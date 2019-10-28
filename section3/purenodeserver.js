@@ -6,6 +6,10 @@ function handler(req, res) {
     // console.log(req.url);
 
     const parsedUrl = url.parse(req.url, true);
+
+    res.setHeader('x-server-date', new Date());
+
+
     if(parsedUrl.pathname === '/') {
         res.writeHead(200, {'Content-type': 'text/plain'});
         res.write('Hello, I am webserver');
