@@ -23,7 +23,18 @@ function handler(req, res) {
         res.writeHead(200, {'Content-type': 'text/plain'});
         res.write(`Hello ${name}`);
         return res.end();
-    } else {
+    } else if (parsedUrl.pathname.startsWith('/user/')) {
+        const regex = new RegExp('\/user\/(.+)');
+        const matches = regex.exec(parsedUrl.pathname);
+        if(!matches || !matches[1]) {
+            res.writeHead(400, {'Content-type': 'text/plain'});
+            return res.end();
+        }
+        res.writeHead(200, {'Content-type': 'text/plain'});
+        res.write(`Userprofile of ${matches[1]}`);
+        return res.end();
+    }
+    else {
         res.writeHead(404, {'Content-type': 'text/plain'});
         return res.end();
     }
