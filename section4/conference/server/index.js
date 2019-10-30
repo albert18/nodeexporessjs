@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+// When using express template PUG
+app.set('view engine', 'pug');
+
 const routes = require('./routes');
 
 // if you want to use file call it static
