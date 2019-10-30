@@ -4,6 +4,11 @@ const app = express();
 
 // When using express template PUG
 app.set('view engine', 'pug');
+
+if(app.get('env') === 'development') {
+    // To view nicely in the brownser Ctrl + U
+    app.locals.pretty = true;
+}
 app.set('views', path.join(__dirname, './views'));
 
 const routes = require('./routes');
