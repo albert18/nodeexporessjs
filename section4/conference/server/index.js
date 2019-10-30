@@ -1,8 +1,10 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 
 // When using express template PUG
 app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, './views'));
 
 const routes = require('./routes');
 
