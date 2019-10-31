@@ -12,6 +12,8 @@ if(app.get('env') === 'development') {
 }
 app.set('views', path.join(__dirname, './views'));
 
+app.locals.title = config.sitename;
+
 const routes = require('./routes');
 app.use(express.static('public'));
 app.get('/favicon.ico', (req, res, next) => {
