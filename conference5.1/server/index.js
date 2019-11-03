@@ -7,6 +7,7 @@ const app = express();
 
 const config = configs[app.get('env')];
 
+// data
 const speakerService = new SpeakerService(config.data.speakers);
 
 app.set('view engine', 'pug');
@@ -16,10 +17,11 @@ if(app.get('env') === 'development') {
 app.set('views', path.join(__dirname, './views'));
 app.locals.title = config.sitename;
 
+// middleware
 app.use(async (req, res, next) => {
     try {
         const names = await speakerService.getNames();
-        console.log(names);
+        // console.log(names);
         res.locals.speakerNames = names;
         return next();
     } catch(err) {  
